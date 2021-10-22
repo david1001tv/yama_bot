@@ -1,0 +1,15 @@
+{
+  "name": "yama_bot",
+  "version": "1.0.0",
+  "description": "Bot for YamaRepublic discord server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Yuhno",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^13.2.0",
+    "node-schedule": "^2.0.0"
+  }
+}
