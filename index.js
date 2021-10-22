@@ -11,7 +11,7 @@ client.on('ready', () => {
   schedule.scheduleJob('* * * * *', async () => {
     const channel = await client.channels.fetch(channelId);
     const allMessages = await channel.messages.fetch();
-    const toDelete = allMessages.filter(msg => msg.createdTimestamp > moment().subtract(10,'minutes').valueOf());
+    const toDelete = allMessages.filter(msg => msg.createdTimestamp < moment().subtract(4,'hours').valueOf() && msg.id !== '901164710022508584');
 
     channel.bulkDelete(toDelete);
   });
