@@ -9,10 +9,15 @@ client.login(token);
 
 client.on('ready', () => {
   schedule.scheduleJob('* * * * *', async () => {
-    const channel = await client.channels.fetch(channelId);
-    const allMessages = await channel.messages.fetch();
-    const toDelete = allMessages.filter(msg => msg.createdTimestamp < moment().subtract(4,'hours').valueOf() && msg.id !== '901164710022508584');
+    try {
+      const channel = await client.channels.fetch(channelId);
+      const allMessages = await channel.messages.fetch({limit: 100});
+      const toDelete = allMessages.filter(msg => msg.createdTimestamp < moment().subtract(1,'hour').valueOf() && msg.id !== '901164710022508584');
 
-    channel.bulkDelete(toDelete);
+      console.log(`Deleted messages: ${Object.keys(toDelete).length}`);
+      channel.bulkDelete(toDelete);
+    } catch (err) {
+      console.log(err.message);
+    }
   });
 });
